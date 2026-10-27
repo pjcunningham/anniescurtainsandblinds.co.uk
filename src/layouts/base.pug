@@ -1,0 +1,32 @@
+doctype html
+html(lang="en-GB")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        title= page.title
+        if page.description
+            meta(name="description", content=page.description)
+        link(rel="canonical", href=canonical)
+        if page.noindex
+            meta(name="robots", content="noindex, follow")
+        if page.openGraph
+            meta(property="og:type", content="website")
+            meta(property="og:locale", content="en_GB")
+            meta(property="og:site_name", content="Annie's Curtains and Blinds")
+            meta(property="og:title", content=page.title)
+            meta(property="og:url", content=canonical)
+            if page.description
+                meta(property="og:description", content=page.description)
+            if page.image
+                meta(property="og:image", content=page.image)
+                if page.imageAlt
+                    meta(property="og:image:alt", content=page.imageAlt)
+        link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,600,700,800,900|Cormorant+Garamond:400,500,600,700,800,900&subset=latin")
+        script(type="module", src="/main.js")
+    body(class="antialiased font-body bg-[#F7F4EE] text-[#342F2A]")
+        a.skip-link(href="#main-content") Skip to content
+        include ../components/header.pug
+        main#main-content(tabindex="-1")
+            block content
+        include ../components/footer.pug
