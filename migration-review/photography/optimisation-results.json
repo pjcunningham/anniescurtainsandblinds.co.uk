@@ -1,0 +1,137 @@
+[
+  {
+    "id": "P065",
+    "source": "2019/01/SittingRoom1_3.jpg",
+    "width": 2592,
+    "height": 3888,
+    "bytes": 1094868,
+    "variants": [
+      {
+        "file": "patterned-sitting-room-curtain-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 41816
+      },
+      {
+        "file": "patterned-sitting-room-curtain-960.webp",
+        "width": 960,
+        "height": 1440,
+        "bytes": 123342
+      },
+      {
+        "file": "patterned-sitting-room-curtain-1920.webp",
+        "width": 1920,
+        "height": 2880,
+        "bytes": 344330
+      }
+    ]
+  },
+  {
+    "id": "P059",
+    "source": "2019/01/Kitchen1_1.jpg",
+    "width": 3440,
+    "height": 2312,
+    "bytes": 945578,
+    "variants": [
+      {
+        "file": "kitchen-curtain-pair-640.webp",
+        "width": 640,
+        "height": 430,
+        "bytes": 48058
+      },
+      {
+        "file": "kitchen-curtain-pair-1280.webp",
+        "width": 1280,
+        "height": 860,
+        "bytes": 129598
+      },
+      {
+        "file": "kitchen-curtain-pair-1920.webp",
+        "width": 1920,
+        "height": 1290,
+        "bytes": 230492
+      }
+    ]
+  },
+  {
+    "id": "P072",
+    "source": "2020/02/sitting-1.jpg",
+    "width": 4032,
+    "height": 3024,
+    "bytes": 1962449,
+    "variants": [
+      {
+        "file": "corner-roman-blinds-640.webp",
+        "width": 640,
+        "height": 480,
+        "bytes": 32244
+      },
+      {
+        "file": "corner-roman-blinds-1280.webp",
+        "width": 1280,
+        "height": 960,
+        "bytes": 97208
+      },
+      {
+        "file": "corner-roman-blinds-1920.webp",
+        "width": 1920,
+        "height": 1440,
+        "bytes": 213606
+      }
+    ]
+  },
+  {
+    "id": "P021",
+    "source": "2018/10/Long-Compton-curtains-closed.jpg",
+    "width": 2592,
+    "height": 1944,
+    "bytes": 779117,
+    "variants": [
+      {
+        "file": "sloping-window-curtains-640.webp",
+        "width": 640,
+        "height": 480,
+        "bytes": 38444
+      },
+      {
+        "file": "sloping-window-curtains-960.webp",
+        "width": 960,
+        "height": 720,
+        "bytes": 92230
+      },
+      {
+        "file": "sloping-window-curtains-1280.webp",
+        "width": 1280,
+        "height": 960,
+        "bytes": 178028
+      }
+    ]
+  },
+  {
+    "id": "P038",
+    "source": "2018/10/coxcoon-2-cut.jpeg",
+    "width": 1911,
+    "height": 2885,
+    "bytes": 1721415,
+    "variants": [
+      {
+        "file": "patterned-curtains-room-480.webp",
+        "width": 480,
+        "height": 725,
+        "bytes": 74900
+      },
+      {
+        "file": "patterned-curtains-room-800.webp",
+        "width": 800,
+        "height": 1208,
+        "bytes": 187998
+      },
+      {
+        "file": "patterned-curtains-room-1280.webp",
+        "width": 1280,
+        "height": 1932,
+        "bytes": 413866
+      }
+    ]
+  }
+]
