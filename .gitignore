@@ -21,3 +21,6 @@ Thumbs.db
 
 # IDE local settings
 .idea/
+
+# Original WordPress assets — migration reference only
+/migration-source/
