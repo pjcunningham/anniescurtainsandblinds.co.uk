@@ -58,7 +58,7 @@ describe('static output', () => {
     expect(document.querySelector('meta[name="description"]').content).toBe('Hand made, made to measure curtains and blinds, Oxfordshire');
     expect(document.querySelector('meta[property="og:url"]').content).toBe('https://anniescurtainsandblinds.co.uk/');
     expect(document.querySelectorAll('img')).toHaveLength(5);
-    for (const img of document.querySelectorAll('img')) expect(img.getAttribute('alt')).toBe('');
+    for (const img of document.querySelectorAll('img')) expect(img.getAttribute('alt').length).toBeGreaterThan(15);
     const reference = parseHTML(readFileSync('design-reference/shuffle-homepage/public/index.html', 'utf8')).document;
     for (const id of ['home', 'services', 'work']) {
       const before = reference.getElementById(id);
@@ -73,6 +73,36 @@ describe('static output', () => {
 });
 
 describe('local HTTP serving', () => {
+  it('serves every responsive photograph as WebP in development and preview, including from nested routes', async () => {
+    const photos = JSON.parse(readFileSync('migration-review/photography/optimisation-results.json', 'utf8'));
+    const images = [...documents.get('/').querySelectorAll('img')];
+    expect(images).toHaveLength(photos.length);
+    expect(documents.get('/').toString()).not.toMatch(/unsplash|migration-source/i);
+    for (const [index, img] of images.entries()) {
+      expect(img.getAttribute('loading')).toBe(index === 0 ? 'eager' : 'lazy');
+      expect(img.getAttribute('fetchpriority')).toBe(index === 0 ? 'high' : null);
+      expect(Number(img.getAttribute('width'))).toBeGreaterThan(0);
+      expect(Number(img.getAttribute('height'))).toBeGreaterThan(0);
+      expect(img.getAttribute('sizes')).toContain('1024px');
+      const candidates = img.getAttribute('srcset').split(', ').map((candidate) => candidate.split(' '));
+      expect(candidates).toEqual(photos[index].variants.map((v) => [`/images/home/${v.file}`, `${v.width}w`]));
+      expect(candidates.map(([path]) => path)).toContain(img.getAttribute('src'));
+      for (const [path, width] of candidates) {
+        const bytes = readFileSync(resolve('dist', '.' + path));
+        expect(bytes.subarray(0, 4).toString()).toBe('RIFF');
+        expect(bytes.subarray(8, 12).toString()).toBe('WEBP');
+        expect(parseInt(width)).toBeLessThanOrEqual(photos[index].width);
+        for (const server of [dev, production]) {
+          for (const route of ['/', '/category/curtains/']) {
+            const response = await fetch(new URL(path, new URL(route, server.resolvedUrls.local[0])));
+            expect(response.status).toBe(200);
+            expect(response.headers.get('content-type')).toContain('image/webp');
+            expect(Buffer.from(await response.arrayBuffer()).equals(bytes)).toBe(true);
+          }
+        }
+      }
+    }
+  });
   it.each(routes)('serves %s in development and preview', async (route) => {
     for (const server of [dev, production]) {
       const response = await fetch(new URL(route, server.resolvedUrls.local[0]));
